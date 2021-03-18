@@ -1,0 +1,19 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: gloo-mesh-istio
+  namespace: istio-system
+spec:
+  hub: gcr.io/istio-enterprise
+  tag: 1.8.3
+  profile: minimal
+  values:
+    global:
+      proxy:
+        image: gcr.io/istio-enterprise/proxyv2:1.8.3-fips
+  components:
+    # Istio Gateway feature
+    ingressGateways:
+      - name: istio-ingressgateway
+        enabled: true
+
